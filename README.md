@@ -6,7 +6,7 @@
 
 Forked from [asseinfo's React Kanban](https://github.com/asseinfo/react-kanban)
 
-Shout out to all their contributors. The git history didn't quite carry over, but here they are, up top.
+Shout out to all the contributors.
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -38,6 +38,10 @@ Shout out to all their contributors. The git history didn't quite carry over, bu
 - The original library seems to not be maintained anymore. The last commit at this time is September of 2021.
 - The original library did not include TypeScript types. It was written in JS without providing any types. This fork is natively written in TypeScript.
 <!-- Outdated build, no demo -->
+
+## Road Map
+
+[Here](./docs/roadmap.md) is what's in the queue. If you want to see something, [make an issue](https://github.com/christopher-caldwell/react-kanban/issues/new)
 
 ## Setup
 

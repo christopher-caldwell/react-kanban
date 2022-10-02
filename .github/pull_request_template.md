@@ -1,18 +1,24 @@
-### Description
+<!--- Provide a general summary of your changes in the Title above -->
 
-Please include a summary of the change and the issue (if is related to a one)
+## Description
 
-### Type of change
+<!--- Describe your changes in detail -->
 
-- [ ] 🐛 Bug fix
-- [ ] 💻 New feature
-- [ ] 📖 Documentation
-- [ ] 💅 Layout
-- [ ] 🧹 Chore
+## Related Issue
 
-### Checklist:
+<!--- This project only accepts pull requests related to open issues -->
+<!--- If suggesting a new feature or change, please discuss it in an issue first -->
+<!--- If fixing a bug, there should be an issue describing it with steps to reproduce -->
+<!--- Please link to the issue here: -->
 
-- [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] I updated the docs related to the changes
+## How Has This Been Tested?
 
-<!-- PLEASE, OPEN THIS PR AS DRAFT IF IT'S NOT THROUGH YET. -->
+<!--- Please describe in detail how you tested your changes. -->
+<!--- Include details of your testing environment, and the tests you ran to -->
+<!--- see how your change affects other areas of the code, etc. -->
+
+## Has the demo been updated?
+
+<!-- If applicable -->
+
+## Screenshots (if appropriate):
