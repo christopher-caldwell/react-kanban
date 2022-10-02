@@ -1,44 +1,42 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/c602758e03850fdb8b64/maintainability)](https://codeclimate.com/github/lourenci/react-kanban/maintainability)
-[![Test Coverage](https://codecov.io/gh/lourenci/react-kanban/branch/main/graph/badge.svg)](https://codecov.io/gh/lourenci/react-kanban)
-[![Build Status](https://github.com/lourenci/react-kanban/workflows/Test/badge.svg?branch=main)](https://github.com/lourenci/react-kanban/actions?query=branch%3Amain+workflow%3ATest)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+# React Kanban
 
-Yet another Kanban/Trello board lib for React.
+[![NPM](https://img.shields.io/npm/v/@caldwell619/react-kanban.svg)](https://www.npmjs.com/package/@caldwell619/react-kanban) [![NPM](https://img.shields.io/bundlephobia/min/@caldwell619/react-kanban)](https://www.npmjs.com/package/@caldwell619/react-kanban) [![](https://img.shields.io/github/last-commit/christopher-caldwell/react-kanban)]() [![](https://img.shields.io/npm/types/typescript)]()
 
-![Kanban Demo](https://i.imgur.com/yceKUEp.gif)
+## asseinfo's React Kanban
 
-### ▶️ Demo
+Forked from [asseinfo's React Kanban](https://github.com/asseinfo/react-kanban)
 
-[Usage](https://nvjp3.csb.app/)
+Shout out to all their contributors.
 
-[![Edit react-kanban-demo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-kanban-demo-nvjp3)
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
-## ❓ Why?
+## Why fork?
 
-- 👊 Reliable: 100% tested on CI; 100% coverage; 100% SemVer.
-- 🎮 Having fun: Play with Hooks 🎣 and ~~Styled Components~~.
-- ♿️ Accessible: Keyboard and mobile friendly.
-- 🔌 Pluggable: For use in projects.
+- The original library seems to not be maintained anymore. The last commit at this time is September of 2021.
+- The original library did not include TypeScript types. It was written in JS without providing any types. This fork is natively written in TypeScript.
+<!-- Outdated build, no demo -->
 
-## 🛠 Install and usage
-
-Since this project use Hooks, you have to install them:
-
-- `react>=16.8.5`
-
-After, Install the lib on your project:
+## Setup
 
 ```bash
-yarn add @asseinfo/react-kanban
+yarn add @caldwell619/react-kanban
 ```
 
-Import the lib and use it on your project:
+## Usage
 
-```js
-import Board from '@asseinfo/react-kanban'
-import '@asseinfo/react-kanban/dist/styles.css'
+There are 2 main boards, `Controlled` and `Uncontrolled`.
 
-const board = {
+This is a deviation from the original, as there was only one board exported. In the original, there's an in-library determination on whether or not the board is controlled. As of right now, that is not how this works, as you will know upfront whether or not your board is controlled.
+
+With that in mind, you can import each of the boards like this:
+
+```tsx
+import { UncontrolledBoard, KanbanBoard } from '@caldwell619/react-kanban'
+// import { ControlledBoard } from '@caldwell619/react-kanban'
+import '@caldwell619/react-kanban/dist/styles.css' // import here for "builtin" styles
+
+const board: KanbanBoard = {
   columns: [
     {
       id: 1,
@@ -51,539 +49,120 @@ const board = {
         },
       ]
     },
-    {
-      id: 2,
-      title: 'Doing',
-      cards: [
-        {
-          id: 2,
-          title: 'Drag-n-drop support',
-          description: 'Move a card between the columns'
-        },
-      ]
-    }
+    { ... }
   ]
 }
 
-<Board initialBoard={board} />
+<UncontrolledBoard initialBoard={board} />
 ```
 
-## 🔥 API
+## Uncontrolled
 
-### 🕹 Controlled and Uncontrolled
+With an uncontrolled board, you pass an `initialBoard` prop, which will be the basis of the internal state. When a user moves something, that is all controlled by internal state.
+
+## Controlled
 
 When you need a better control over the board, you should stick with the controlled board.
 A controlled board means you need to deal with the board state yourself, you need to keep the state in your hands (component) and pass this state to the `<Board />`, we just reflect this state.
-This also means a little more of complexity, although we make available some helpers to deal with the board shape.
-You can read more in the React docs, [here](https://reactjs.org/docs/forms.html#controlled-components) and [here](https://reactjs.org/docs/uncontrolled-components.html).
 
-If you go with the controlled one, you need to pass your board through the `children` prop, otherwise you need to pass it through the `initialBoard` prop.
+If you go with the controlled one, you need to pass your board through the `children` prop.
 
-#### Helpers to work with the controlled board
+### Helpers to work with the controlled board
 
-We expose some APIs that you can import to help you to work with the controlled state. Those are the same APIs we use internally to manage the uncontrolled board. We really recommend you to use them, they are 100% unit tested and they don't do any side effect to your board state.
+Helpers are exposed to help with the management of your board state when using the `ControlledBoard`. They are the same helpers used internally, so you can utilize them to assist in your controlled state.
 
-To use them, you just need to import them together with your board:
+```tsx
+import { ControlledBoard, moveCard, KanbanBoard, OnDragEndNotification, Card } from '@caldwell619/react-kanban'
 
-```js
-import Board, { addCard, addColumn, ... } from '@asseinfo/react-kanban'
-```
+const MyBoard = () => {
+  const [board, setBoard] = useState<KanbanBoard>(initialBoard)
 
-**All the helpers you need to pass your board and they will return a new board to pass to your state:**
+  const handleCardMove: OnDragEndNotification<Card> = (_card, source, destination) => {
+    setBoard((currentBoard) => {
+      return moveCard(currentBoard, source, destination)
+    })
+  }
 
-```js
-import Board, { addColumn } from '@asseinfo/react-kanban'
-...
-const [board, setBoard] = useState(initialBoard)
-...
-const newBoard = addColumn(board, newColumn)
-setBoard(newBoard)
-...
-<Board>{board}</Board>
-```
-
-[You can see the list of helpers in the end of the props documentation.](#-helpers-to-be-used-with-an-controlled-board)
-
-### 🔷 Shape of a board
-
-```js
-{
-  columns: [{
-    id: ${unique-required-columnId},
-    title: {$required-columnTitle**},
-    cards: [{
-      id: ${unique-required-cardId},
-      title: ${required-cardTitle*}
-      description: ${required-description*}
-    }]
-  }]
+  return <ControlledBoard onCardDragEnd={handleCardMove}>{board}</ControlledBoard>
 }
 ```
 
-\* The `title` and the `description` are required if you are using the card's default template. You can render your own card template through the [`renderCard`](#rendercard) prop.
+[Full list of helpers](./docs/helpers.md).
 
-\*\* The `title` is required if you are using the column's default template. You can render your own column template through the [`renderColumnHeader`](#rendercolumnheader) prop.
+## Board type
 
-### ⚙️ Props
+If you're using JS, this section doesn't have any effect on you.
 
-| Prop                                                                                                                          | Description                                                                                                       | Controlled | Uncontrolled |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------- | ------------ |
-| [`children`](#children) (required if controlled)                                                                              | The board to render                                                                                               | ✅         | 🚫           |
-| [`initialBoard`](#initialboard) (required if uncontrolled)                                                                    | The board to render                                                                                               | 🚫         | ✅           |
-| [`onCardDragEnd`](#oncarddragend)                                                                                             | Callback that will be called when the card move ends                                                              | ✅         | ✅           |
-| [`onColumnDragEnd`](#oncolumndragend)                                                                                         | Callback that will be called when the column move ends                                                            | ✅         | ✅           |
-| [`renderCard`](#rendercard)                                                                                                   | A card to be rendered instead of the default card                                                                 | ✅         | ✅           |
-| [`renderColumnHeader`](#rendercolumnheader)                                                                                   | A column header to be rendered instead of the default column header                                               | ✅         | ✅           |
-| [`allowAddColumn`](#allowaddcolumn)                                                                                           | Allow a new column be added by the user                                                                           | ✅         | ✅           |
-| [`onNewColumnConfirm`](#onnewcolumnconfirm) (required if use the default column adder template)                               | Callback that will be called when a new column is confirmed by the user through the default column adder template | ✅         | ✅           |
-| [`onColumnNew`](#oncolumnnew) (required if `allowAddColumn` or when [`addColumn`](#rendercolumnadder) is called)              | Callback that will be called when a new column is added through the default column adder template                 | 🚫         | ✅           |
-| [`renderColumnAdder`](#rendercolumnadder)                                                                                     | A column adder to be rendered instead of the default column adder template                                        | ✅         | ✅           |
-| [`disableColumnDrag`](#disablecolumndrag)                                                                                     | Disable the column move                                                                                           | ✅         | ✅           |
-| [`disableCardDrag`](#disablecarddrag)                                                                                         | Disable the card move                                                                                             | ✅         | ✅           |
-| [`allowRemoveColumn`](#allowremovecolumn)                                                                                     | Allow to remove a column in default column header                                                                 | ✅         | ✅           |
-| [`onColumnRemove`](#oncolumnremove) (required if `allowRemoveColumn` or when [`removeColumn`](#rendercolumnheader) is called) | Callback that will be called when a column is removed                                                             | ✅         | ✅           |
-| [`allowRenameColumn`](#allowrenamecolumn)                                                                                     | Allow to rename a column in default column header                                                                 | ✅         | ✅           |
-| [`onColumnRename`](#oncolumnrename) (required if `allowRenameColumn` or when [`renameColumn`](#rendercolumnheader) is called) | Callback that will be called when a column is renamed                                                             | ✅         | ✅           |
-| [`allowRemoveCard`](#allowremovecard)                                                                                         | Allow to remove a card in default card template                                                                   | ✅         | ✅           |
-| [`onCardRemove`](#oncardremove) (required if `allowRemoveCard`)                                                               | Callback that will be called when a card is removed                                                               | ✅         | ✅           |
-| [`allowAddCard`](#allowaddcard)                                                                                               | Allow to add a card. Expect an object with the position to add the card in the column.                            | 🚫         | ✅           |
-| [`onCardNew`](#oncardnew) (required if `allowAddCard` or when [`addCard`](#rendercolumnheader) is called)                     | Callback that will be called when a new card is added through the default card adder template                     | 🚫         | ✅           |
-| [`onNewCardConfirm`](#onnewcardconfirm) (required if `allowAddCard`)                                                          | Callback that will be called when a new card is confirmed by the user through the default card adder template     | 🚫         | ✅           |
+The TypeScript type for the board is `KanbanBoard`. It is a generic that accepts `TCard extends Card`. Your data will undoubtedly need to be customized, so all the helpers and Board will accept your `TCard`.
 
-#### `children`
+```tsx
+import { Card } from '@caldwell619/react-kanban'
 
-The board. Use this prop if you want to control the board's state.
-
-#### `initialBoard`
-
-The board. Use this prop if you don't want to control the board's state.
-
-#### `onCardDragEnd`
-
-When the user moves a card, this callback will be called passing these parameters:
-
-| Arg           | Description                                                      |
-| ------------- | ---------------------------------------------------------------- |
-| `board`       | The modified board                                               |
-| `card`        | The moved card                                                   |
-| `source`      | An object with the card source `{ fromColumnId, fromPosition }`  |
-| `destination` | An object with the card destination `{ toColumnId, toPosition }` |
-
-##### Source and destination
-
-| Prop           | Description                                 |
-| -------------- | ------------------------------------------- |
-| `fromColumnId` | Column source id.                           |
-| `toColumnId`   | Column destination id.                      |
-| `fromPosition` | Card's index in column source's array.      |
-| `toPosition`   | Card's index in column destination's array. |
-
-#### `onColumnDragEnd`
-
-When the user moves a column, this callback will be called passing these parameters:
-
-| Arg           | Description                                            |
-| ------------- | ------------------------------------------------------ |
-| `board`       | The modified board                                     |
-| `column`      | The moved column                                       |
-| `source`      | An object with the column source `{ fromPosition }`    |
-| `destination` | An object with the column destination `{ toPosition }` |
-
-##### Source and destination
-
-| Prop           | Description                     |
-| -------------- | ------------------------------- |
-| `fromPosition` | Column index before the moving. |
-| `toPosition`   | Column index after the moving.  |
-
-#### `renderCard`
-
-Use this if you want to render your own card. You have to pass a function and return your card component.
-The function will receive these parameters:
-
-| Arg       | Description                                                      |
-| --------- | ---------------------------------------------------------------- |
-| `card`    | The card props                                                   |
-| `cardBag` | A bag with some helper functions and state to work with the card |
-
-##### `cardBag`
-
-| function      | Description                                           |
-| ------------- | ----------------------------------------------------- |
-| `removeCard*` | Call this function to remove the card from the column |
-| `dragging`    | Whether the card is being dragged or not              |
-
-\* It's unavailable when the board is controlled.
-
-Ex.:
-
-```js
-const board = {
-  columns: [{
-    id: ${unique-required-columnId},
-    title: ${columnTitle},
-    cards: [{
-      id: ${unique-required-cardId},
-      dueDate: ${cardDueDate},
-      content: ${cardContent}
-    }]
-  }]
+interface CustomCard extends Card {
+  storyPoints: number
 }
-
-<Board
-  renderCard={({ content }, { removeCard, dragging }) => (
-    <YourCard dragging={dragging}>
-      {content}
-      <button type="button" onClick={removeCard}>Remove Card</button>
-    </YourCard>
-  )}
->
-{board}
-</Board>
+export const renderCard: UncontrolledBoardProps<CustomCard>['renderCard'] = (card) => {
+  // Can access with `card.storyPoints`
+  return <CardWithStoryPoints {...card} />
+}
 ```
 
-#### `renderColumnHeader`
+This behavior will applied throughout the render and confirm methods.
 
-Use this if you want to render your own column header. You have to pass a function and return your column header component.
-The function will receive these parameters:
+```tsx
+import { ControlledBoard, KanbanBoard } from '@caldwell619/react-kanban'
 
-| Arg         | Description                                              |
-| ----------- | -------------------------------------------------------- |
-| `column`    | The column props                                         |
-| `columnBag` | A bag with some helper functions to work with the column |
-
-##### `columnBag`
-
-| function        | Description                                                |
-| --------------- | ---------------------------------------------------------- |
-| `removeColumn*` | Call this function to remove the column from the board     |
-| `renameColumn*` | Call this function with a title to rename the column       |
-| `addCard*`      | Call this function with a new card to add it in the column |
-
-**`addCard`**: As a second argument you can pass an option to define where in the column you want to add the card:
-
-- `{ on: 'top' }`: to add on the top of the column.
-- `{ on: 'bottom' }`: to add on the bottom of the column (default).
-
-\* It's unavailable when the board is controlled.
-
-Ex.:
-
-```js
-const board = {
-  columns: [{
-    id: ${unique-required-columnId},
-    title: ${columnTitle},
-    wip: ${wip},
-    cards: [{
-      id: ${unique-required-cardId},
-      title: ${required-cardTitle},
-      description: ${required-cardDescription}
-    }]
-  }]
-}
-
-<Board
-  renderColumnHeader={({ title }, { removeColumn, renameColumn, addCard }) => (
-    <YourColumnHeader>
-      {title}
-      <button type='button' onClick={removeColumn}>Remove Column</button>
-      <button type='button' onClick={() => renameColumn('New title')}>Rename Column</button>
-      <button type='button' onClick={() => addCard({ id: 99, title: 'New Card' })}>Add Card</button>
-    </YourColumnHeader
-  )}
->
-  {board}
-</Board>
-```
-
-#### `allowAddColumn`
-
-Allow the user to add a new column directly by the board.
-
-#### `onNewColumnConfirm`
-
-When the user confirms a new column through the default column adder template, this callback will be called with a draft of a column with the title typed by the user.
-
-If your board is uncontrolled you **must** return the new column with its new id in this callback.
-
-If your board is controlled use this to get the new column title.
-
-Ex.:
-
-```js
-function onColumnNew (newColumn) {
-  const newColumn = { id: ${required-new-unique-columnId}, ...newColumn }
-  return newColumn
-}
-
-<Board initialBoard={board} allowAddColumn onColumnNew={onColumnNew} />
-```
-
-#### `onColumnNew`
-
-When the user adds a new column through the default column adder template, this callback will be called passing the updated board and the new column.
-
-This callback will not be called in an uncontrolled board.
-
-#### `renderColumnAdder`
-
-Use this if you want to render your own column adder. You have to pass a function and return your column adder component.
-The function will receive these parameters:
-
-| Arg         | Description                      |
-| ----------- | -------------------------------- |
-| `columnBag` | A bag with some helper functions |
-
-##### `columnBag`
-
-| function     | Description                                                |
-| ------------ | ---------------------------------------------------------- |
-| `addColumn*` | Call this function with a new column to add the new column |
-
-\* It's unavailable when the board is controlled.
-
-Ex.:
-
-```js
-const ColumnAdder = ({ addColumn }) {
+const CustomBoard = () => {
   return (
-    <div onClick={()=> addColumn({id: ${required-new-unique-columnId}, title: 'Title', cards:[]})}>
-      Add column
-    </div>
+    <ControlledBoard<CustomCard>
+      renderCard={(card) => {
+        // `card.storyPoints`
+        return <CardWithStoryPoints {...card} />
+      }}
+    >
+      {board}
+    </ControlledBoard>
   )
 }
-
-<Board
-  allowAddColumn
-  renderColumnAdder={({ addColumn }) => <ColumnAdder addColumn={addColumn} />}
-  {board}
-</Board>
 ```
 
-#### `disableColumnDrag`
+## Props
 
-Disallow the user from move a column.
+For an exhaustive ( yet still **WIP** ) list of props you can pass, refer to [this page](./props.md).
 
-#### `disableCardDrag`
+## Styling
 
-Disallow the user from move a card.
+You can either style all the board or import our style and override it with the styles you want. Ideally you would render the column instead of overriding CSS, however this may be helpful for you if your use case needs it.
 
-#### `allowRemoveColumn`
-
-When using the default header template, when you don't pass a template through the `renderColumnHeader`, it will allow the user to remove a column.
-
-#### `onColumnRemove`
-
-When the user removes a column, this callback will be called passing these parameters:
-
-| Arg      | Description                          |
-| -------- | ------------------------------------ |
-| `board`  | The board without the removed column |
-| `column` | The removed column                   |
-
-#### `allowRenameColumn`
-
-When using the default header template, when you don't pass a template through the `renderColumnHeader`, it will allow the user to rename a column.
-
-#### `onColumnRename`
-
-When the user renames a column, this callback will be called passing these parameters:
-
-| Arg      | Description                       |
-| -------- | --------------------------------- |
-| `board`  | The board with the renamed column |
-| `column` | The renamed column                |
-
-#### `allowRemoveCard`
-
-When using the default card template, when you don't pass a template through the `renderCard`, it will allow the user to remove a card.
-
-#### `onCardRemove`
-
-When the user removes a card, this callback will be called passing these parameters:
-
-| Arg      | Description                          |
-| -------- | ------------------------------------ |
-| `board`  | The board without the removed column |
-| `column` | The column without the removed card  |
-| `card`   | The removed card                     |
-
-#### `allowAddCard`
-
-Allow the user to add a card in the column directly by the board. By default, it adds the card on the bottom of the column, but you can specify whether you want to add at the top or at the bottom of the board by passing an object with 'on' prop.
-
-E.g.:
-<Board allowAddCard /> // at the bottom by default
-<Board allowAddCard={{ on: 'bottom' }}  /> // in the bottom of the column
-<Board allowAddCard={{ on: 'top' }}  /> // at the top of the column
-
-### 🔩 Helpers to be used with an controlled board
-
-#### `moveColumn`
-
-| Arg                | Description                             |
-| ------------------ | --------------------------------------- |
-| `board`            | Your board                              |
-| `{ fromPosition }` | Index of column to be moved             |
-| `{ toPosition }`   | Index destination of column to be moved |
-
-#### `moveCard`
-
-Use this on a controlled board, the "from" and "to" are the same ones passed to onCardDragEnd callback. You can used this within your onCardDragEnd call back to actually update your board as it will return a new board which you can save down into state.
-
-| Arg                              | Description                                |
-| -------------------------------- | ------------------------------------------ |
-| `board`                          | Your board                                 |
-| `{ fromPosition, fromColumnId }` |An object with the card source `{ fromColumnId, fromPosition }` which are the indexes of the cards current position  |
-| `{ toPosition, toColumnId }`   | An object with the card destination `{ fromColumnId, fromPosition }` which are the indexes of the cards new position |
-
-#### `addColumn`
-
-| Arg      | Description        |
-| -------- | ------------------ |
-| `board`  | Your board         |
-| `column` | Column to be added |
-
-#### `removeColumn`
-
-| Arg      | Description          |
-| -------- | -------------------- |
-| `board`  | Your board           |
-| `column` | Column to be removed |
-
-#### `changeColumn`
-
-| Arg      | Description                                                                                       |
-| -------- | ------------------------------------------------------------------------------------------------- |
-| `board`  | Your board                                                                                        |
-| `column` | Column to be renamed                                                                              |
-| `object` | Pass a object to be merged with the column. You can add new props and/or change the existing ones |
-
-#### `addCard`
-
-| Arg                    | Description                                                                         |
-| ---------------------- | ----------------------------------------------------------------------------------- |
-| `board`                | Your board                                                                          |
-| `inColumn`             | Column to add the card be added                                                     |
-| `card`                 | Card to be added                                                                    |
-| `{ on: 'bottom|top' }` | Whether the card will be added on top or bottom of the column (`bottom` is default) |
-
-#### `changeCard`
-
-| Arg      | Description                                                                                       |
-| -------- | ------------------------------------------------------------------------------------------------- |
-| `board`  | Your board                                                                                        |
-| `cardId` | Card's id to be changed
-| `object` | Pass a object to be merged with the card. You can add new props and/or change the existing ones   |
-
-#### `onCardNew`
-
-When the user adds a new card through the default card adder template, this callback will be called passing the updated board and the new card.
-
-#### `onNewCardConfirm`
-
-When the user confirms a new card through the default card adder template, this callback will be called with a draft of a card with the title and the description typed by the user.
-
-You **must** return the new card with its new id in this callback.
-
-Ex.:
-
-```js
-function onCardNew (newCard) {
-  const newCard = { id: ${required-new-unique-cardId}, ...newCard }
-  return newCard
-}
-
-<Board initialBoard={board} allowAddCard onNewCardConfirm={onCardNew} onCardNew={console.log} />
-```
-
-#### `removeCard`
-
-| Arg          | Description              |
-| ------------ | ------------------------ |
-| `board`      | Your board               |
-| `fromColumn` | Column where the card is |
-| `card`       | Card to be removed       |
-
-## 💅🏻 Styling
-
-You can either style all the board or import our style and override it with the styles you want:
-
-| Class |
-| ----- |
-| `react-kanban-board` |
-| `react-kanban-card` |
-| `react-kanban-card-skeleton` |
-| `react-kanban-card--dragging` |
-| `react-kanban-card__description` |
-| `react-kanban-card__title` |
-| `react-kanban-column` |
-| `react-kanban-card-adder-form` |
-| `react-kanban-card-adder-button` |
-| `react-kanban-card-adder-form__title` |
+| Class                                       |
+| ------------------------------------------- |
+| `react-kanban-board`                        |
+| `react-kanban-card`                         |
+| `react-kanban-card-skeleton`                |
+| `react-kanban-card--dragging`               |
+| `react-kanban-card__description`            |
+| `react-kanban-card__title`                  |
+| `react-kanban-column`                       |
+| `react-kanban-card-adder-form`              |
+| `react-kanban-card-adder-button`            |
+| `react-kanban-card-adder-form__title`       |
 | `react-kanban-card-adder-form__description` |
-| `react-kanban-card-adder-form__button` |
-| `react-kanban-column-header` |
-| `react-kanban-column-header__button` |
-| `react-kanban-column-adder-button` |
+| `react-kanban-card-adder-form__button`      |
+| `react-kanban-column-header`                |
+| `react-kanban-column-header__button`        |
+| `react-kanban-column-adder-button`          |
 
-## 🧪 Tests
+## Contributing
 
-### Unit
+PRs are welcome.
 
-```shell
-yarn test
-```
+### Steps
 
-Code coverage is saved in `coverage` folder. Open HTML report for example with
-
-```shell
-open coverage/lcov-report/index.html
-```
-
-### End-to-end
-
-Using [Cypress](https://www.cypress.io) test runner. Start dev server and open Cypress using
-
-```shell
-yarn dev
-```
-
-All tests are in the [cypress/integration](cypress/integration) folder. These tests also collect code coverage and save in several formats in the `coverage` folder. Open HTML report
-
-```shell
-open coverage/lcov-report/index.html
-```
-
-Read [Cypress code coverage guide](https://on.cypress.io/code-coverage)
-
-Note: to avoid inserting `babel-plugin-istanbul` twice during Jest tests, E2E tests run with `NODE_ENV=cypress` environment variable. The `babel-plugin-istanbul` plugin is included in [.babelrc](.babelrc) file only in the `cypress` Node environment, leaving the default Jest configuration during `NODE_ENV=test` the same.
-
-## 🚴‍♀️ Roadmap
-
-You can view the next features [here](https://github.com/lourenci/react-kanban/milestone/1).
-Feel welcome to help us with some PRs.
-
-## 🤝 Contributing
-
-PRs are welcome:
-
+- File an [issue](https://github.com/christopher-caldwell/react-kanban/issues), using the issue template.
 - Fork this project.
-- Setup it:
-  ```
-  yarn
-  yarn start
-  ```
-- Make your change.
-- Please add yourself to the contributors table (we use [all contributors](https://allcontributors.org/docs/en/cli/installation) for that, we you will need that installed first):
-  ```
-  yarn contributors:add
-  ```
-- Open the PR.
-
-### ✍️ Guidelines for contributing
-
-- You need to test your change.
-- Try to be clean on your change. CodeClimate will keep an eye on you.
-- It has to pass on CI.
+- Clone your fork
+- In your fork, run `yarn` to install deps
+- Begin work
+- Add yourself to the contributors table
+  - `yarn contributor:add`
+- Submit your PR across forks with the target base as `christopher-caldwell:master`.

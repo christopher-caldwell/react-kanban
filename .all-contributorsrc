@@ -1,13 +1,13 @@
 {
   "projectName": "react-kanban",
-  "projectOwner": "lourenci",
+  "projectOwner": "caldwell619",
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [
     "README.md"
   ],
   "imageSize": 100,
-  "commit": true,
+  "commit": false,
   "contributors": [
     {
       "login": "lourenci",
