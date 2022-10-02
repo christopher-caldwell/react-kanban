@@ -1,4 +1,4 @@
-# React Kanban
+# caldwell619 React Kanban
 
 [![NPM](https://img.shields.io/npm/v/@caldwell619/react-kanban.svg)](https://www.npmjs.com/package/@caldwell619/react-kanban) [![NPM](https://img.shields.io/bundlephobia/min/@caldwell619/react-kanban)](https://www.npmjs.com/package/@caldwell619/react-kanban) [![](https://img.shields.io/github/last-commit/christopher-caldwell/react-kanban)]() [![](https://img.shields.io/npm/types/typescript)]()
 
@@ -6,9 +6,31 @@
 
 Forked from [asseinfo's React Kanban](https://github.com/asseinfo/react-kanban)
 
-Shout out to all their contributors.
+Shout out to all their contributors. The git history didn't quite carry over, but here they are, up top.
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://blog.lourenci.com/"><img src="https://avatars3.githubusercontent.com/u/2339362?v=4?s=100" width="100px;" alt="Leandro Lourenci"/><br /><sub><b>Leandro Lourenci</b></sub></a><br /><a href="#question-lourenci" title="Answering Questions">💬</a> <a href="https://github.com/caldwell619/react-kanban/issues?q=author%3Alourenci" title="Bug reports">🐛</a> <a href="https://github.com/caldwell619/react-kanban/commits?author=lourenci" title="Code">💻</a> <a href="https://github.com/caldwell619/react-kanban/commits?author=lourenci" title="Documentation">📖</a> <a href="#example-lourenci" title="Examples">💡</a> <a href="https://github.com/caldwell619/react-kanban/commits?author=lourenci" title="Tests">⚠️</a></td>
+      <td align="center"><a href="https://glebbahmutov.com/"><img src="https://avatars1.githubusercontent.com/u/2212006?v=4?s=100" width="100px;" alt="Gleb Bahmutov"/><br /><sub><b>Gleb Bahmutov</b></sub></a><br /><a href="https://github.com/caldwell619/react-kanban/commits?author=bahmutov" title="Tests">⚠️</a></td>
+      <td align="center"><a href="https://github.com/mathesouza"><img src="https://avatars0.githubusercontent.com/u/20099472?v=4?s=100" width="100px;" alt="Matheus Sabino"/><br /><sub><b>Matheus Sabino</b></sub></a><br /><a href="https://github.com/caldwell619/react-kanban/commits?author=mathesouza" title="Code">💻</a> <a href="https://github.com/caldwell619/react-kanban/commits?author=mathesouza" title="Documentation">📖</a> <a href="https://github.com/caldwell619/react-kanban/commits?author=mathesouza" title="Tests">⚠️</a></td>
+      <td align="center"><a href="https://github.com/dizzyrobin"><img src="https://avatars0.githubusercontent.com/u/21962999?v=4?s=100" width="100px;" alt="Pedro Javier Nicolás"/><br /><sub><b>Pedro Javier Nicolás</b></sub></a><br /><a href="https://github.com/caldwell619/react-kanban/commits?author=dizzyrobin" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/MatheusPoliCamilo"><img src="https://avatars3.githubusercontent.com/u/25781749?v=4?s=100" width="100px;" alt="Matheus Poli"/><br /><sub><b>Matheus Poli</b></sub></a><br /><a href="https://github.com/caldwell619/react-kanban/commits?author=MatheusPoliCamilo" title="Code">💻</a> <a href="https://github.com/caldwell619/react-kanban/commits?author=MatheusPoliCamilo" title="Tests">⚠️</a> <a href="https://github.com/caldwell619/react-kanban/commits?author=MatheusPoliCamilo" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://github.com/sousajunior"><img src="https://avatars0.githubusercontent.com/u/17458197?v=4?s=100" width="100px;" alt="Carlinhos de Sousa Junior"/><br /><sub><b>Carlinhos de Sousa Junior</b></sub></a><br /><a href="https://github.com/caldwell619/react-kanban/commits?author=sousajunior" title="Code">💻</a> <a href="https://github.com/caldwell619/react-kanban/commits?author=sousajunior" title="Tests">⚠️</a></td>
+      <td align="center"><a href="https://github.com/PeteDuncanson"><img src="https://avatars.githubusercontent.com/u/1674590?v=4?s=100" width="100px;" alt="Pete Duncanson"/><br /><sub><b>Pete Duncanson</b></sub></a><br /><a href="https://github.com/caldwell619/react-kanban/commits?author=PeteDuncanson" title="Code">💻</a> <a href="https://github.com/caldwell619/react-kanban/commits?author=PeteDuncanson" title="Documentation">📖</a> <a href="#example-PeteDuncanson" title="Examples">💡</a></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    
+  </tfoot>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## Why fork?
@@ -163,6 +185,7 @@ PRs are welcome.
 - Clone your fork
 - In your fork, run `yarn` to install deps
 - Begin work
-- Add yourself to the contributors table
-  - `yarn contributor:add`
+- Add yourself to the contributors table, this is powered by [all-contributors](https://allcontributors.org/)
+  - `yarn all-contributors add`
+  - `yarn all-contributors generate`
 - Submit your PR across forks with the target base as `christopher-caldwell:master`.
