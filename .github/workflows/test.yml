@@ -1,0 +1,56 @@
+name: Test
+
+on:
+  push:
+    branches:
+    - main
+    - beta
+    - next
+  pull_request:
+
+jobs:
+  linter-and-unit:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: 'test'
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: linter and unit test
+      run: |
+        yarn
+        yarn lint
+        yarn test --coverageDirectory unit-coverage
+    - uses: codecov/codecov-action@v1
+      with:
+        file: unit-coverage/lcov.info
+        flags: jestspecs
+        fail_ci_if_error: true
+  cypress:
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: 'test'
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn
+      - run: NODE_ENV=cypress yarn server &
+      - uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
+      - run: yarn nyc report --reporter=text-summary
+      - uses: codecov/codecov-action@v1
+        with:
+          file: coverage/lcov.info
+          flags: cypressspecs
+          fail_ci_if_error: true
+  release:
+    runs-on: ubuntu-latest
+    needs: [linter-and-unit, cypress]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - run: |
+          curl -v -H "Accept: application/vnd.github.everest-preview+json" -H "Authorization: token ${{ secrets.GH_TOKEN }}" https://api.github.com/repos/lourenci/react-kanban/dispatches -d '{ "event_type": "release" }'

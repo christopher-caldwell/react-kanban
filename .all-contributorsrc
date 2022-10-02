@@ -1,0 +1,91 @@
+{
+  "projectName": "react-kanban",
+  "projectOwner": "lourenci",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "lourenci",
+      "name": "Leandro Lourenci",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2339362?v=4",
+      "profile": "https://blog.lourenci.com/",
+      "contributions": [
+        "question",
+        "bug",
+        "code",
+        "doc",
+        "example",
+        "test"
+      ]
+    },
+    {
+      "login": "bahmutov",
+      "name": "Gleb Bahmutov",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2212006?v=4",
+      "profile": "https://glebbahmutov.com/",
+      "contributions": [
+        "test"
+      ]
+    },
+    {
+      "login": "mathesouza",
+      "name": "Matheus Sabino",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/20099472?v=4",
+      "profile": "https://github.com/mathesouza",
+      "contributions": [
+        "code",
+        "doc",
+        "test"
+      ]
+    },
+    {
+      "login": "dizzyrobin",
+      "name": "Pedro Javier Nicolás",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/21962999?v=4",
+      "profile": "https://github.com/dizzyrobin",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "MatheusPoliCamilo",
+      "name": "Matheus Poli",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/25781749?v=4",
+      "profile": "https://github.com/MatheusPoliCamilo",
+      "contributions": [
+        "code",
+        "test",
+        "doc"
+      ]
+    },
+    {
+      "login": "sousajunior",
+      "name": "Carlinhos de Sousa Junior",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/17458197?v=4",
+      "profile": "https://github.com/sousajunior",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "PeteDuncanson",
+      "name": "Pete Duncanson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1674590?v=4",
+      "profile": "https://github.com/PeteDuncanson",
+      "contributions": [
+        "code",
+        "doc",
+        "example"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "commitConvention": "none",
+  "skipCi": true
+}

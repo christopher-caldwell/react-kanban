@@ -1,0 +1,11 @@
+node_modules
+coverage
+dist
+yarn.lock
+package-lock.json
+.DS_Store
+cypress/screenshots
+.nyc_output
+unit-coverage
+.projections.json
+.tool-versions
