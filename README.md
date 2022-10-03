@@ -45,7 +45,7 @@ Shout out to all the contributors.
 
 ## Demo
 
-[Link](https://christopher-caldwell.github.io/react-kanban/controlled)
+[Link](https://christopher-caldwell.github.io/react-kanban)
 
 ## Setup
 
