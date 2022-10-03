@@ -102,7 +102,7 @@ export interface ControlledBoardProps<TCard extends Card> {
   /** If not provided , will render the default column adder */
   renderColumnAdder?: () => JSX.Element
   /** If not provided , will render the default column header */
-  renderColumnHeader?: () => JSX.Element
+  renderColumnHeader?: (column: Column<TCard>) => JSX.Element
   /** If not provided , will render the default card */
   renderCard?: (card: TCard, cardBag: CardBag) => JSX.Element
   /** @default true */

@@ -4,7 +4,7 @@ import { Divider } from '@mui/material'
 
 import { board, CustomCard } from '@/data'
 import { Source } from '@/components'
-import { Filters, renderCard, Header } from './components'
+import { Filters, renderCard, Header, renderColumnHeader } from './components'
 
 export const JiraDemo: FC = () => {
   return (
@@ -14,7 +14,11 @@ export const JiraDemo: FC = () => {
       <Header />
       <Filters />
 
-      <UncontrolledBoard<CustomCard> initialBoard={board} renderCard={renderCard} />
+      <UncontrolledBoard<CustomCard>
+        initialBoard={board}
+        renderCard={renderCard}
+        renderColumnHeader={renderColumnHeader}
+      />
     </>
   )
 }
