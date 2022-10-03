@@ -8,15 +8,17 @@ import { Filters, renderColumnHeader, renderCard } from './components'
 
 export const NotionDemo: FC = () => {
   return (
-    <NotionStyles>
+    <>
       <Source
         title='Notion'
         url='https://github.com/christopher-caldwell/react-kanban/blob/main/demo/src/features/notion/index.tsx'
       />
-      <Typography variant='h4'>Kanban</Typography>
-      <Filters />
-      <UncontrolledBoard initialBoard={board} renderColumnHeader={renderColumnHeader} renderCard={renderCard} />
-    </NotionStyles>
+      <NotionStyles>
+        <Typography variant='h4'>Kanban</Typography>
+        <Filters />
+        <UncontrolledBoard initialBoard={board} renderColumnHeader={renderColumnHeader} renderCard={renderCard} />
+      </NotionStyles>
+    </>
   )
 }
 
