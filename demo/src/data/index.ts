@@ -1,5 +1,7 @@
 import { Card, KanbanBoard } from '@caldwell619/react-kanban'
 import { v4 as uuid } from 'uuid'
+import randomRgba from 'random-rgba'
+import { faker } from '@faker-js/faker'
 
 enum TicketType {
   Bug = 'bug',
@@ -11,12 +13,18 @@ export const ticketTypeToColor: Record<TicketType, string> = {
   [TicketType.Bug]: 'red',
   [TicketType.Feature]: 'green'
 }
+export const ticketTypeToBgColor: Record<TicketType, string> = {
+  [TicketType.Enhancement]: randomRgba(30),
+  [TicketType.Bug]: randomRgba(30),
+  [TicketType.Feature]: randomRgba(30)
+}
 export interface CustomCard extends Card {
   id: string
   assigneeId: number
   storyPoints: number
   prLink?: string
   ticketType: TicketType
+  createdAt: Date
 }
 const storyPointGenerator = () => Math.round(Math.random() * 10 + 1)
 const assigneeIdGenerator = () => Math.round(Math.random() * 3 + 1)
@@ -32,7 +40,8 @@ export const board: KanbanBoard<CustomCard> = {
           description: 'Card content',
           assigneeId: assigneeIdGenerator(),
           storyPoints: storyPointGenerator(),
-          ticketType: TicketType.Feature
+          ticketType: TicketType.Feature,
+          createdAt: faker.date.past()
         },
         {
           id: uuid(),
@@ -40,7 +49,8 @@ export const board: KanbanBoard<CustomCard> = {
           description: 'Card content',
           assigneeId: assigneeIdGenerator(),
           storyPoints: storyPointGenerator(),
-          ticketType: TicketType.Bug
+          ticketType: TicketType.Bug,
+          createdAt: faker.date.past()
         },
         {
           id: uuid(),
@@ -48,7 +58,8 @@ export const board: KanbanBoard<CustomCard> = {
           description: 'Card content',
           assigneeId: assigneeIdGenerator(),
           storyPoints: storyPointGenerator(),
-          ticketType: TicketType.Enhancement
+          ticketType: TicketType.Enhancement,
+          createdAt: faker.date.past()
         }
       ]
     },
@@ -62,7 +73,8 @@ export const board: KanbanBoard<CustomCard> = {
           description: 'Card content',
           assigneeId: assigneeIdGenerator(),
           storyPoints: storyPointGenerator(),
-          ticketType: TicketType.Bug
+          ticketType: TicketType.Bug,
+          createdAt: faker.date.past()
         },
         {
           id: uuid(),
@@ -70,7 +82,8 @@ export const board: KanbanBoard<CustomCard> = {
           description: 'Card content',
           assigneeId: assigneeIdGenerator(),
           storyPoints: storyPointGenerator(),
-          ticketType: TicketType.Enhancement
+          ticketType: TicketType.Enhancement,
+          createdAt: faker.date.past()
         },
         {
           id: uuid(),
@@ -78,7 +91,8 @@ export const board: KanbanBoard<CustomCard> = {
           description: 'Card content',
           assigneeId: assigneeIdGenerator(),
           storyPoints: storyPointGenerator(),
-          ticketType: TicketType.Feature
+          ticketType: TicketType.Feature,
+          createdAt: faker.date.past()
         },
         {
           id: uuid(),
@@ -86,7 +100,8 @@ export const board: KanbanBoard<CustomCard> = {
           description: 'Card content',
           assigneeId: assigneeIdGenerator(),
           storyPoints: storyPointGenerator(),
-          ticketType: TicketType.Enhancement
+          ticketType: TicketType.Enhancement,
+          createdAt: faker.date.past()
         }
       ]
     },
@@ -101,7 +116,8 @@ export const board: KanbanBoard<CustomCard> = {
           assigneeId: assigneeIdGenerator(),
           storyPoints: storyPointGenerator(),
           prLink: 'https://google.com',
-          ticketType: TicketType.Feature
+          ticketType: TicketType.Feature,
+          createdAt: faker.date.past()
         }
       ]
     },
@@ -116,7 +132,8 @@ export const board: KanbanBoard<CustomCard> = {
           assigneeId: assigneeIdGenerator(),
           storyPoints: storyPointGenerator(),
           prLink: 'https://google.com',
-          ticketType: TicketType.Feature
+          ticketType: TicketType.Feature,
+          createdAt: faker.date.past()
         },
         {
           id: uuid(),
@@ -125,7 +142,8 @@ export const board: KanbanBoard<CustomCard> = {
           assigneeId: assigneeIdGenerator(),
           storyPoints: storyPointGenerator(),
           prLink: 'https://google.com',
-          ticketType: TicketType.Bug
+          ticketType: TicketType.Bug,
+          createdAt: faker.date.past()
         },
         {
           id: uuid(),
@@ -134,7 +152,8 @@ export const board: KanbanBoard<CustomCard> = {
           assigneeId: assigneeIdGenerator(),
           storyPoints: storyPointGenerator(),
           prLink: 'https://google.com',
-          ticketType: TicketType.Feature
+          ticketType: TicketType.Feature,
+          createdAt: faker.date.past()
         },
         {
           id: uuid(),
@@ -143,7 +162,8 @@ export const board: KanbanBoard<CustomCard> = {
           assigneeId: assigneeIdGenerator(),
           storyPoints: storyPointGenerator(),
           prLink: 'https://google.com',
-          ticketType: TicketType.Bug
+          ticketType: TicketType.Bug,
+          createdAt: faker.date.past()
         }
       ]
     }
