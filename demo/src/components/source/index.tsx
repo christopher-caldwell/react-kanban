@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { styled, Link, Typography } from '@mui/material'
+import { Divider } from '@mui/material'
 
 export const Source: FC<Props> = ({ title, url }) => {
   return (
@@ -10,6 +11,7 @@ export const Source: FC<Props> = ({ title, url }) => {
           Source
         </NotUglyLink>
       </Typography>
+      <Divider sx={{ marginBottom: 5 }} />
     </>
   )
 }

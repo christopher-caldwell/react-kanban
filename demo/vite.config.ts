@@ -11,7 +11,7 @@ function pathResolve(dir: string) {
 const shouldAnalyze = process.env.ANALYZE
 
 const config: UserConfig = {
-  base: '/react-kanban',
+  base: '/react-kanban/',
   resolve: {
     alias: [
       {

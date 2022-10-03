@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'Segoe';
+  src: local('Segoe'), url('@/assets/Segoe-UI.ttf');
+}
+@font-face {
+  font-family: 'Segoe Bold';
+  src: local('Segoe Bold'), url('@/assets/Segoe-UI-Bold.ttf');
+}
