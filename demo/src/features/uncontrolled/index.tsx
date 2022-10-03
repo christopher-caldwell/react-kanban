@@ -7,7 +7,10 @@ import { Source } from '@/components'
 export const UncontrolledBoardDemo: FC = () => {
   return (
     <>
-      <Source title='Uncontrolled' url='/' />
+      <Source
+        title='Uncontrolled'
+        url='https://github.com/christopher-caldwell/react-kanban/blob/main/demo/src/features/uncontrolled/index.tsx'
+      />
       <UncontrolledBoard initialBoard={board} />
     </>
   )

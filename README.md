@@ -43,6 +43,10 @@ Shout out to all the contributors.
 
 [Here](./docs/roadmap.md) is what's in the queue. If you want to see something, [make an issue](https://github.com/christopher-caldwell/react-kanban/issues/new)
 
+## Demo
+
+[Link](https://christopher-caldwell.github.io/react-kanban/controlled)
+
 ## Setup
 
 ```bash

@@ -16,7 +16,10 @@ export const ControlledBoardDemo: FC = () => {
 
   return (
     <>
-      <Source title='Controlled' url='/' />
+      <Source
+        title='Controlled'
+        url='https://github.com/christopher-caldwell/react-kanban/blob/main/demo/src/features/controlled/index.tsx'
+      />
       <ControlledBoard onCardDragEnd={handleCardMove} disableColumnDrag>
         {controlledBoard}
       </ControlledBoard>
