@@ -28,7 +28,7 @@ if [ $? != 0 ]; then
   exit 1
 fi
 
-yarn sass src/styles.scss dist/styles.css
+yarn sass src/styles.scss dist/styles.css --no-source-map
 
 printf "\n\n$BICyan$(echo Bumping the version number..)$Color_Off"
 
