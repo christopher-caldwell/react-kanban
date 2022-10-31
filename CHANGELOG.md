@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/christopher-caldwell/react-kanban/compare/v0.0.3...v0.0.4) (2022-10-31)
+
+
+### Bug Fixes
+
+* Removing source maps from styles ([0899583](https://github.com/christopher-caldwell/react-kanban/commit/0899583f6d7b1044605d7bf64d272198c53a2573))
+
 ### [0.0.3](https://github.com/christopher-caldwell/react-kanban/compare/v0.0.2...v0.0.3) (2022-10-31)
 
 
