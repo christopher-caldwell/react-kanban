@@ -1,6 +1,6 @@
 {
   "name": "@caldwell619/react-kanban",
-  "version": "0.0.4",
+  "version": "0.0.5-alpha.0",
   "description": "(fork of) Yet another Kanban/Trello board lib for React",
   "scripts": {
     "lint": "eslint --ext .ts,.tsx src",
