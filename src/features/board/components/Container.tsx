@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { DragDropContext, DragDropContextProps } from 'react-beautiful-dnd'
+import { DragDropContext, DragDropContextProps } from '@hello-pangea/dnd'
 
 import { Column } from '@/features/column'
 import { DefaultColumn } from '@/features/column'

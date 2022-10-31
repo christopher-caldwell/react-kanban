@@ -1,12 +1,12 @@
 {
   "name": "@caldwell619/react-kanban",
-  "version": "0.0.4",
+  "version": "0.0.5-alpha.0",
   "description": "(fork of) Yet another Kanban/Trello board lib for React",
   "scripts": {
     "lint": "eslint --ext .ts,.tsx src",
     "format": "prettier --write src",
     "type-check": "tsc --noEmit -p tsconfig.build.json",
-    "build": "tsc -p tsconfig.build.json && npx tscpaths -p tsconfig.json -s src -o dist",
+    "build": "sh scripts/build.sh",
     "build:watch": "nodemon --exec yarn build --watch src --ext .tsx,.ts --delay 2.5",
     "publish:version": "sh scripts/publish.sh",
     "predeploy": "cd demo && yarn install && yarn run build",
@@ -22,11 +22,13 @@
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16",
-    "react-dom": ">=16"
+    "react-dom": ">=16",
+    "@hello-pangea/dnd": ">=16"
   },
   "homepage": "https://christopher-caldwell.github.io/react-kanban",
   "devDependencies": {
     "@cypress/code-coverage": "3.8.2",
+    "@hello-pangea/dnd": "^16.0.1",
     "@testing-library/jest-dom": "5.11.5",
     "@testing-library/react": "10.4.9",
     "@types/jest": "^29.1.1",

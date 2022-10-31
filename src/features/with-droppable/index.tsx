@@ -1,5 +1,5 @@
 import { ForwardRefExoticComponent, RefAttributes, PropsWithChildren } from 'react'
-import { Droppable } from 'react-beautiful-dnd'
+import { Droppable } from '@hello-pangea/dnd'
 
 export const withDroppable = function <TElement extends HTMLElement>(
   Component: ForwardRefExoticComponent<PropsWithChildren<RefAttributes<TElement>>>
