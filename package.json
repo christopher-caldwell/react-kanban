@@ -22,11 +22,13 @@
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16",
-    "react-dom": ">=16"
+    "react-dom": ">=16",
+    "@hello-pangea/dnd": ">=16"
   },
   "homepage": "https://christopher-caldwell.github.io/react-kanban",
   "devDependencies": {
     "@cypress/code-coverage": "3.8.2",
+    "@hello-pangea/dnd": "^16.0.1",
     "@testing-library/jest-dom": "5.11.5",
     "@testing-library/react": "10.4.9",
     "@types/jest": "^29.1.1",

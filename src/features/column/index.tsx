@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { Draggable } from 'react-beautiful-dnd'
+import { Draggable } from '@hello-pangea/dnd'
 
 import { Card } from '../card'
 import { withDroppable } from '../with-droppable'

@@ -17,10 +17,6 @@ const config: UserConfig = {
       {
         find: /@\//,
         replacement: pathResolve('src') + '/'
-      },
-      {
-        find: 'react/jsx-runtime',
-        replacement: 'react/jsx-runtime.js'
       }
     ]
   },
@@ -65,8 +61,7 @@ const config: UserConfig = {
       typescript: true,
       overlay: true,
       eslint: {
-        files: 'src',
-        extensions: ['.ts', '.tsx']
+        lintCommand: 'eslint src --ext .ts,.tsx'
       }
     })
   ]
