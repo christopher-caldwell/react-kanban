@@ -7,7 +7,7 @@ import { moveCard, moveColumn, addColumn, removeColumn, changeColumn, addCard, r
 import { Card, Column, KanbanBoard } from '@/types'
 import { BoardContainer } from './Container'
 import { DefaultColumn } from '@/features/column'
-import { SharedProps, BoundFunction } from './shared'
+import { SharedProps } from './shared'
 
 export const UncontrolledBoard = function <TCard extends Card>({
   initialBoard,

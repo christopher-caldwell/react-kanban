@@ -11,11 +11,9 @@ interface ColumnCallbackInfo<TCard extends Card> {
   column: Column<TCard>
 }
 interface CardBag {
-  removeCard?: BoundFunction
+  removeCard?: () => void
   dragging: boolean
 }
-
-export type BoundFunction = any
 
 export interface SharedProps<TCard extends Card> {
   onCardDragEnd?: OnDragEndNotification<TCard>
@@ -23,7 +21,6 @@ export interface SharedProps<TCard extends Card> {
   onColumnRemove?: (info: ColumnCallbackInfo<TCard>) => void
   onCardRemove?: (info: CardCallbackInfo<TCard>) => void
   renderCard?: (card: TCard, options: CardBag) => JSX.Element
-  /** If not provided , will render the default card */
   onColumnRename?: (info: ColumnCallbackInfo<TCard>) => void
   onCardNew?: (info: CardCallbackInfo<TCard>) => void
   onColumnNew?: (info: ColumnCallbackInfo<TCard>) => void
