@@ -1,14 +1,15 @@
 import { StrictMode } from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import { CssBaseline } from '@mui/material'
 
 import { App } from './App'
 import './font.css'
 
-ReactDOM.render(
+const root = document.getElementById('root')
+if (!root) throw new Error('Must have root node')
+ReactDOM.createRoot(root).render(
   <StrictMode>
     <CssBaseline />
     <App />
-  </StrictMode>,
-  document.getElementById('root')
+  </StrictMode>
 )
