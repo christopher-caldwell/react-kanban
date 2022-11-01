@@ -7,6 +7,7 @@ import { moveCard, moveColumn, addColumn, removeColumn, changeColumn, addCard, r
 import { Card, Column, KanbanBoard } from '@/types'
 import { BoardContainer } from './Container'
 import { DefaultColumn } from '@/features/column'
+import { SharedProps } from './shared'
 
 export const UncontrolledBoard = function <TCard extends Card>({
   initialBoard,
@@ -44,19 +45,19 @@ export const UncontrolledBoard = function <TCard extends Card>({
     const column = renderColumnAdder ? newColumn : await onNewColumnConfirm?.(newColumn)
     if (!column) throw new Error('Cant add falsy column')
     const boardWithNewColumn = addColumn<TCard>(board, column)
-    onColumnNew?.(boardWithNewColumn, column as Column<TCard>)
+    onColumnNew?.({ board: boardWithNewColumn, column: column as Column<TCard> })
     setBoard(boardWithNewColumn)
   }
 
   const handleColumnRemove = (column: Column<TCard>) => {
     const filteredBoard = removeColumn(board, column)
-    onColumnRemove?.(filteredBoard, column)
+    onColumnRemove?.({ board: filteredBoard, column })
     setBoard(filteredBoard)
   }
 
   const handleColumnRename = (column: Column<TCard>, title: string) => {
     const boardWithRenamedColumn = changeColumn<TCard>(board, column, { title })
-    onColumnRename?.(boardWithRenamedColumn, { ...column, title })
+    onColumnRename?.({ board: boardWithRenamedColumn, column: { ...column, title } })
     setBoard(boardWithRenamedColumn)
   }
 
@@ -65,7 +66,7 @@ export const UncontrolledBoard = function <TCard extends Card>({
     const targetColumn = boardWithNewCard.columns.find(({ id }) => id === column.id)
     if (!targetColumn) throw new Error('Cannot find target column')
 
-    onCardNew?.(boardWithNewCard, targetColumn, card)
+    onCardNew?.({ board: boardWithNewCard, column: targetColumn, card })
     setBoard(boardWithNewCard)
   }
 
@@ -79,7 +80,7 @@ export const UncontrolledBoard = function <TCard extends Card>({
     const boardWithoutCard = removeCard<TCard>(board, column, card)
     const targetColumn = boardWithoutCard.columns.find(({ id }) => id === column.id)
     if (!targetColumn) throw new Error('Cannot find target column')
-    onCardRemove?.(boardWithoutCard, targetColumn, card)
+    onCardRemove?.({ board: boardWithoutCard, column: targetColumn, card })
     setBoard(boardWithoutCard)
   }
 
@@ -103,6 +104,7 @@ export const UncontrolledBoard = function <TCard extends Card>({
       // TODO: Check because og this could be falsy, also no idea what bound thing is
       renderColumnHeader={(column) => {
         if (renderColumnHeader) {
+          // TODO: Refactor this into a better signature
           return renderColumnHeader(column, {
             removeColumn: handleColumnRemove.bind(null, column),
             renameColumn: handleColumnRename.bind(null, column),
@@ -112,9 +114,9 @@ export const UncontrolledBoard = function <TCard extends Card>({
           return (
             <DefaultColumn
               allowRemoveColumn={allowRemoveColumn}
-              onColumnRemove={(updatedColumn) => onColumnRemove?.(board, updatedColumn)}
+              onColumnRemove={(updatedColumn) => onColumnRemove?.({ board, column: updatedColumn })}
               allowRenameColumn={allowRenameColumn}
-              onColumnRename={(renamedColumn) => onColumnRename?.(board, renamedColumn)}
+              onColumnRename={(renamedColumn) => onColumnRename?.({ board, column: renamedColumn })}
             >
               {column}
             </DefaultColumn>
@@ -147,42 +149,6 @@ export const UncontrolledBoard = function <TCard extends Card>({
   )
 }
 
-type BoundFunction = any
-
-export interface UncontrolledBoardProps<TCard extends Card> {
+export interface UncontrolledBoardProps<TCard extends Card> extends SharedProps<TCard> {
   initialBoard: KanbanBoard<TCard>
-  /** If not provided , will render the default column adder */
-  renderColumnAdder?: (options: { addColumn: (newColumn: Column<TCard>) => Promise<void> }) => JSX.Element
-  /** If not provided , will render the default column header */
-  renderColumnHeader?: (
-    column: Column<TCard>,
-    options: { removeColumn: BoundFunction; renameColumn: BoundFunction; addCard: BoundFunction }
-  ) => JSX.Element
-  /** If not provided , will render the default card */
-  renderCard?: (card: TCard, options: { removeCard: BoundFunction; dragging: boolean }) => JSX.Element
-  onColumnRemove?: (filteredBoard: KanbanBoard<TCard>, column: Column<TCard>) => void
-  onColumnRename?: (board: KanbanBoard<TCard>, column: Column<TCard>) => void
-  onCardNew?: (board: KanbanBoard<TCard>, column: Column<TCard>, card: TCard) => void
-  onCardRemove?: (board: KanbanBoard<TCard>, column: Column<TCard>, card: TCard) => void
-  onColumnNew?: (board: KanbanBoard<TCard>, column: Column<TCard>) => void
-  /** Validation in which you provide the ID of the newly created card */
-  onNewCardConfirm?: (card: Omit<TCard, 'id'>) => Promise<TCard>
-  /** Validation in which you provide the ID of the newly created column */
-  onNewColumnConfirm?: (newColumn: Omit<Column<TCard>, 'id'>) => Promise<Column<TCard>>
-  onCardDragEnd?: () => void
-  onColumnDragEnd?: () => void
-  /** @default false */
-  disableCardDrag?: boolean
-  /** @default false */
-  disableColumnDrag?: boolean
-  /** @default true */
-  allowAddCard?: boolean | { on: 'top' | 'bottom' }
-  /** @default true */
-  allowRemoveCard?: boolean
-  /** @default true */
-  allowRemoveColumn?: boolean
-  /** @default true */
-  allowRenameColumn?: boolean
-  /** @default true */
-  allowAddColumn?: boolean
 }

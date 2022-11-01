@@ -11,9 +11,12 @@ export const UncontrolledBoardDemo: FC = () => {
         title='Uncontrolled'
         url='https://github.com/christopher-caldwell/react-kanban/blob/main/demo/src/features/uncontrolled/index.tsx'
       />
-      <UncontrolledBoard initialBoard={board} />
+      <UncontrolledBoard
+        initialBoard={board}
+        onCardRemove={({ board, card, column }) => {
+          console.log({ board, card, column })
+        }}
+      />
     </>
   )
 }
-
-// TODO: use form to control props
