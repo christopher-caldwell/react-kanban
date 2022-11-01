@@ -149,19 +149,18 @@ export const UncontrolledBoard = function <TCard extends Card>({
 }
 
 interface ColumnAdderBag<TCard extends Card> {
-  /** Will be a stubbed empty function on the UncontrolledBoard */
   addColumn: (newColumn: Column<TCard>) => Promise<void>
 }
 
-// TODO: Fix bound function into proper signature
-interface ColumnHeaderBag {
-  removeColumn: BoundFunction
-  renameColumn: BoundFunction
-  addCard: BoundFunction
+interface Position {
+  on: 'top' | 'bottom'
 }
-interface CardBag {
-  removeCard?: BoundFunction
-  dragging: boolean
+
+// TODO: Fix bound function into proper signature
+interface ColumnHeaderBag<TCard extends Card> {
+  removeColumn: () => void
+  renameColumn: (title: string) => void
+  addCard: (card: TCard, options?: Position) => void
 }
 
 export interface UncontrolledBoardProps<TCard extends Card> extends SharedProps<TCard> {
@@ -169,5 +168,5 @@ export interface UncontrolledBoardProps<TCard extends Card> extends SharedProps<
   /** If not provided , will render the default column adder */
   renderColumnAdder?: (options: ColumnAdderBag<TCard>) => JSX.Element
   /** If not provided , will render the default column header */
-  renderColumnHeader?: (column: Column<TCard>, options: ColumnHeaderBag) => JSX.Element
+  renderColumnHeader?: (column: Column<TCard>, options: ColumnHeaderBag<TCard>) => JSX.Element
 }

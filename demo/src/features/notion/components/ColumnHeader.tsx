@@ -4,10 +4,15 @@ import AddIcon from '@mui/icons-material/Add'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import randomRgba from 'random-rgba'
 
-import { CustomCard } from '@/data'
+import { createNewCard, CustomCard } from '@/data'
 import { ColoredBgText } from './Card'
 
 export const renderColumnHeader: UncontrolledBoardProps<CustomCard>['renderColumnHeader'] = (column, { addCard }) => {
+  const onAddCard = () => {
+    const newCard = createNewCard()
+    // Can be async, do mutation here awaiting result, then call `addCard`
+    addCard(newCard, { on: 'top' })
+  }
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Box sx={{ flexGrow: 1, display: 'flex' }}>
@@ -18,7 +23,7 @@ export const renderColumnHeader: UncontrolledBoardProps<CustomCard>['renderColum
         <IconButton>
           <MoreHorizIcon />
         </IconButton>
-        <IconButton onClick={addCard}>
+        <IconButton onClick={onAddCard}>
           <AddIcon />
         </IconButton>
       </Box>
