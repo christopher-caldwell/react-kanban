@@ -14,7 +14,7 @@ import {
 import { withDroppable } from '@/features/with-droppable'
 import { RenderCard } from '@/features/column'
 import { Card, Column as ColumnType, KanbanBoard } from '@/types'
-import { SharedProps } from './shared'
+import { ControlledBoardProps } from './Controlled'
 
 const Columns = forwardRef<HTMLDivElement>((props, ref) => (
   <div ref={ref} style={{ whiteSpace: 'nowrap' }} {...props} />
@@ -22,7 +22,7 @@ const Columns = forwardRef<HTMLDivElement>((props, ref) => (
 const DroppableBoard = withDroppable(Columns)
 
 export const BoardContainer = function <TCard extends Card>({
-  children: board,
+  board,
   renderCard,
   disableColumnDrag,
   disableCardDrag,
@@ -90,11 +90,11 @@ export interface OnDragEnd<TSubject> extends Partial<Coordinates> {
   subject: TSubject
 }
 interface Props<TCard extends Card> {
-  children: KanbanBoard<TCard>
+  board: KanbanBoard<TCard>
   renderCard: RenderCard<TCard>
   disableColumnDrag: boolean
   disableCardDrag: boolean
-  renderColumnHeader: SharedProps<TCard>['renderColumnHeader']
+  renderColumnHeader: ControlledBoardProps<TCard>['renderColumnHeader']
   renderColumnAdder: () => JSX.Element | null
   allowRemoveColumn: boolean
   onColumnRemove?: (column: ColumnType<TCard>) => void

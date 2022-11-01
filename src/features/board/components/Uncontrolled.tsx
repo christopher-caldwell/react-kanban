@@ -7,7 +7,7 @@ import { moveCard, moveColumn, addColumn, removeColumn, changeColumn, addCard, r
 import { Card, Column, KanbanBoard } from '@/types'
 import { BoardContainer } from './Container'
 import { DefaultColumn } from '@/features/column'
-import { SharedProps } from './shared'
+import { SharedProps, BoundFunction } from './shared'
 
 export const UncontrolledBoard = function <TCard extends Card>({
   initialBoard,
@@ -143,12 +143,31 @@ export const UncontrolledBoard = function <TCard extends Card>({
       disableCardDrag={disableCardDrag}
       onCardNew={async (column, card) => await handleDraftCardAdd(column, card, allowAddCard)}
       allowAddCard={!!allowAddCard && !!onNewCardConfirm}
-    >
-      {board}
-    </BoardContainer>
+      board={board}
+    />
   )
+}
+
+interface ColumnAdderBag<TCard extends Card> {
+  /** Will be a stubbed empty function on the UncontrolledBoard */
+  addColumn: (newColumn: Column<TCard>) => Promise<void>
+}
+
+// TODO: Fix bound function into proper signature
+interface ColumnHeaderBag {
+  removeColumn: BoundFunction
+  renameColumn: BoundFunction
+  addCard: BoundFunction
+}
+interface CardBag {
+  removeCard?: BoundFunction
+  dragging: boolean
 }
 
 export interface UncontrolledBoardProps<TCard extends Card> extends SharedProps<TCard> {
   initialBoard: KanbanBoard<TCard>
+  /** If not provided , will render the default column adder */
+  renderColumnAdder?: (options: ColumnAdderBag<TCard>) => JSX.Element
+  /** If not provided , will render the default column header */
+  renderColumnHeader?: (column: Column<TCard>, options: ColumnHeaderBag) => JSX.Element
 }
