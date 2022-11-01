@@ -1,8 +1,26 @@
 import { FC, useState } from 'react'
-import { ControlledBoard, OnDragEndNotification, Card, moveCard, KanbanBoard } from '@caldwell619/react-kanban'
+import { Board, OnDragEndNotification, Card, moveCard, KanbanBoard } from '@caldwell619/react-kanban'
 
 import { board } from '@/data'
 import { Source } from '@/components'
+
+// If you want to use the library like the old one, you can do so by determining which board you want to use
+export const UncontrolledBoardDemo: FC = () => {
+  return (
+    <>
+      <Source
+        title='Uncontrolled'
+        url='https://github.com/christopher-caldwell/react-kanban/blob/main/demo/src/features/on-board/index.tsx'
+      />
+      <Board
+        initialBoard={board}
+        onCardRemove={({ board, card, column }) => {
+          console.log({ board, card, column })
+        }}
+      />
+    </>
+  )
+}
 
 export const ControlledBoardDemo: FC = () => {
   // You need to control the state yourself.
@@ -20,7 +38,7 @@ export const ControlledBoardDemo: FC = () => {
         title='Controlled'
         url='https://github.com/christopher-caldwell/react-kanban/blob/main/demo/src/features/controlled/index.tsx'
       />
-      <ControlledBoard
+      <Board
         onCardDragEnd={handleCardMove}
         disableColumnDrag
         onCardRemove={({ board, card, column }) => {
@@ -28,7 +46,7 @@ export const ControlledBoardDemo: FC = () => {
         }}
       >
         {controlledBoard}
-      </ControlledBoard>
+      </Board>
     </>
   )
 }

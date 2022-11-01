@@ -14,6 +14,7 @@ import {
 import { withDroppable } from '@/features/with-droppable'
 import { RenderCard } from '@/features/column'
 import { Card, Column as ColumnType, KanbanBoard } from '@/types'
+import { SharedProps } from './shared'
 
 const Columns = forwardRef<HTMLDivElement>((props, ref) => (
   <div ref={ref} style={{ whiteSpace: 'nowrap' }} {...props} />
@@ -93,7 +94,7 @@ interface Props<TCard extends Card> {
   renderCard: RenderCard<TCard>
   disableColumnDrag: boolean
   disableCardDrag: boolean
-  renderColumnHeader: (column: ColumnType<TCard>) => JSX.Element
+  renderColumnHeader: SharedProps<TCard>['renderColumnHeader']
   renderColumnAdder: () => JSX.Element | null
   allowRemoveColumn: boolean
   onColumnRemove?: (column: ColumnType<TCard>) => void

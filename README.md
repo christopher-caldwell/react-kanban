@@ -57,7 +57,7 @@ yarn add @caldwell619/react-kanban
 
 There are 2 main boards, `Controlled` and `Uncontrolled`.
 
-This is a deviation from the original, as there was only one board exported. In the original, there's an in-library determination on whether or not the board is controlled. As of right now, that is not how this works, as you will know upfront whether or not your board is controlled.
+This is a deviation from the original, as there was only one board exported. In the original, there's an in-library determination on whether or not the board is controlled. That is not quite how this works, as you will know upfront whether or not your board is controlled.
 
 With that in mind, you can import each of the boards like this:
 
@@ -86,16 +86,22 @@ const board: KanbanBoard = {
 <UncontrolledBoard initialBoard={board} />
 ```
 
-## Uncontrolled
+### Uncontrolled
 
 With an uncontrolled board, you pass an `initialBoard` prop, which will be the basis of the internal state. When a user moves something, that is all controlled by internal state.
 
-## Controlled
+### Controlled
 
 When you need a better control over the board, you should stick with the controlled board.
 A controlled board means you need to deal with the board state yourself, you need to keep the state in your hands (component) and pass this state to the `<Board />`, we just reflect this state.
 
 If you go with the controlled one, you need to pass your board through the `children` prop.
+
+### Board
+
+If you really want to use the one unified board, you can still do so with `Board`. Whether or not you provide `initialBoard` or `children` will determine which board you're using. If you provide both, `UncontrolledBoard` takes priority.
+
+See an example, [here](./demo/src/features/one-board/index.tsx).
 
 ### Helpers to work with the controlled board
 
