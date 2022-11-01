@@ -5,7 +5,7 @@ import { Links } from './Links'
 
 export const Header = () => {
   return (
-    <AppBar position='static'>
+    <AppBar position='sticky'>
       <Toolbar disableGutters sx={{ padding: '0 20px' }}>
         <Icon sx={{ display: { xs: 'none', md: 'flex' }, mr: 2 }} />
         <Typography
