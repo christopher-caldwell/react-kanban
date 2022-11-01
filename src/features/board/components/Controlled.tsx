@@ -81,9 +81,8 @@ export const ControlledBoard = function <TCard extends Card>({
         //
       }}
       allowAddCard
-    >
-      {board}
-    </BoardContainer>
+      board={board}
+    />
   )
 }
 
@@ -94,4 +93,8 @@ export type OnDragEndNotification<TSubject> = (
 ) => void
 export interface ControlledBoardProps<TCard extends Card> extends SharedProps<TCard> {
   children: KanbanBoard<TCard>
+  /** If not provided , will render the default column adder */
+  renderColumnAdder?: () => JSX.Element
+  /** If not provided , will render the default column header */
+  renderColumnHeader?: (column: Column<TCard>) => JSX.Element
 }

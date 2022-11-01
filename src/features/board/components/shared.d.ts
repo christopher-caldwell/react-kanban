@@ -10,30 +10,17 @@ interface ColumnCallbackInfo<TCard extends Card> {
   board: KanbanBoard<TCard>
   column: Column<TCard>
 }
-
-interface ColumnAdderBag<TCard extends Card> {
-  addColumn: (newColumn: Column<TCard>) => Promise<void>
-}
-interface ColumnHeaderBag {
-  removeColumn: BoundFunction
-  renameColumn: BoundFunction
-  addCard: BoundFunction
-}
 interface CardBag {
-  removeCard?: BoundFunction
+  removeCard?: () => void
   dragging: boolean
 }
+
 export interface SharedProps<TCard extends Card> {
   onCardDragEnd?: OnDragEndNotification<TCard>
   onColumnDragEnd?: OnDragEndNotification<Column<TCard>>
   onColumnRemove?: (info: ColumnCallbackInfo<TCard>) => void
   onCardRemove?: (info: CardCallbackInfo<TCard>) => void
   renderCard?: (card: TCard, options: CardBag) => JSX.Element
-  /** If not provided , will render the default column adder */
-  renderColumnAdder?: (options?: ColumnAdderBag<TCard>) => JSX.Element
-  /** If not provided , will render the default column header */
-  renderColumnHeader?: (column: Column<TCard>, options?: ColumnHeaderBag) => JSX.Element
-  /** If not provided , will render the default card */
   onColumnRename?: (info: ColumnCallbackInfo<TCard>) => void
   onCardNew?: (info: CardCallbackInfo<TCard>) => void
   onColumnNew?: (info: ColumnCallbackInfo<TCard>) => void
@@ -65,5 +52,3 @@ export type OnDragEndNotification<TSubject> = (
 export interface OnDragEnd<TSubject> extends Partial<Coordinates> {
   subject: TSubject
 }
-
-type BoundFunction = any

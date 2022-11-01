@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/christopher-caldwell/react-kanban/compare/v0.0.5...v0.0.6) (2022-11-01)
+
+
+### Bug Fixes
+
+* Consolidating types and adding a one board ([ef36872](https://github.com/christopher-caldwell/react-kanban/commit/ef36872a7d1d2e61a8a6f6322d515379f83e6ce4))
+
 ### [0.0.5](https://github.com/christopher-caldwell/react-kanban/compare/v0.0.2...v0.0.5) (2022-10-31)
 
 

@@ -143,12 +143,30 @@ export const UncontrolledBoard = function <TCard extends Card>({
       disableCardDrag={disableCardDrag}
       onCardNew={async (column, card) => await handleDraftCardAdd(column, card, allowAddCard)}
       allowAddCard={!!allowAddCard && !!onNewCardConfirm}
-    >
-      {board}
-    </BoardContainer>
+      board={board}
+    />
   )
+}
+
+interface ColumnAdderBag<TCard extends Card> {
+  addColumn: (newColumn: Column<TCard>) => Promise<void>
+}
+
+interface Position {
+  on: 'top' | 'bottom'
+}
+
+// TODO: Fix bound function into proper signature
+interface ColumnHeaderBag<TCard extends Card> {
+  removeColumn: () => void
+  renameColumn: (title: string) => void
+  addCard: (card: TCard, options?: Position) => void
 }
 
 export interface UncontrolledBoardProps<TCard extends Card> extends SharedProps<TCard> {
   initialBoard: KanbanBoard<TCard>
+  /** If not provided , will render the default column adder */
+  renderColumnAdder?: (options: ColumnAdderBag<TCard>) => JSX.Element
+  /** If not provided , will render the default column header */
+  renderColumnHeader?: (column: Column<TCard>, options: ColumnHeaderBag<TCard>) => JSX.Element
 }
