@@ -170,6 +170,18 @@ export const board: KanbanBoard<CustomCard> = {
   ]
 }
 
+export const createNewCard = () => {
+  return {
+    id: uuid(),
+    title: 'Super New Card',
+    description: 'Card content',
+    assigneeId: assigneeIdGenerator(),
+    storyPoints: storyPointGenerator(),
+    ticketType: TicketType.Feature,
+    createdAt: faker.date.past()
+  }
+}
+
 // export const cardsKeyedById: Record<string | number, Card> = board.columns.reduce<Record<string | number, Card>>(
 //   (total, current) => {
 //     const cards: Record<string | number, Card> = current.cards.reduce((cardTotal, card) => {
