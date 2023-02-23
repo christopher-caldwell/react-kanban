@@ -53,6 +53,14 @@ Shout out to all the contributors.
 yarn add @caldwell619/react-kanban
 ```
 
+### Dependencies
+
+React Kanban uses [@hello-pangea/dnd](https://github.com/hello-pangea/dnd) as a peer dependency.
+
+```bash
+yarn add @hello-pangea/dnd
+```
+
 ## Usage
 
 There are 2 main boards, `Controlled` and `Uncontrolled`.
