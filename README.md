@@ -53,6 +53,13 @@ Shout out to all the contributors.
 yarn add @caldwell619/react-kanban
 ```
 
+You will also need to install the peer dependencies:
+- react
+- react-dom
+- @hello-pangea/dnd
+
+These are listed as peer dependencies because I do not want to pin specific versions as dependencies if you are already using them.
+
 ## Usage
 
 There are 2 main boards, `Controlled` and `Uncontrolled`.
