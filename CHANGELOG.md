@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/christopher-caldwell/react-kanban/compare/v0.0.7...v0.0.9) (2023-11-30)
+
+
+### Features
+
+* Adding to the docs ([6502395](https://github.com/christopher-caldwell/react-kanban/commit/6502395a384eb0c3dd2074525217d322b44aa409))
+* Including other contributors ([00e6350](https://github.com/christopher-caldwell/react-kanban/commit/00e63504eb39e3edf2f04585bfde542c5fbd75e6))
+
+
+### Bug Fixes
+
+* Adding peer deps to setup ([#22](https://github.com/christopher-caldwell/react-kanban/issues/22)) ([a101408](https://github.com/christopher-caldwell/react-kanban/commit/a101408aef207172cbca52a30c78649d3e142116))
+* Shared didn't get included in bundle ([5f04a33](https://github.com/christopher-caldwell/react-kanban/commit/5f04a33d91ab0dedba9a5c700ecbc7507e73b45b))
+* Swapping order of publish script ([9c400ae](https://github.com/christopher-caldwell/react-kanban/commit/9c400ae536f193a2f4b7647c087b85d444e1d962))
+
 ### [0.0.8](https://github.com/christopher-caldwell/react-kanban/compare/v0.0.7...v0.0.8) (2022-11-01)
 
 
