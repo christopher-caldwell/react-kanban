@@ -43,7 +43,7 @@ export const Column = function <TCard extends CardType>({
             data-testid={`column-${column.id}`}
           >
             <div {...columnProvided.dragHandleProps}>{renderColumnHeader(column)}</div>
-            {allowAddCard && <CardAdder<TCard> column={column} onConfirm={onCardNew} />}
+            {allowAddCard ? <CardAdder<TCard> column={column} onConfirm={onCardNew} /> : null}
             <DroppableColumn droppableId={String(column.id)}>
               {column.cards.length ? (
                 column.cards.map((card, index) => (
@@ -81,7 +81,7 @@ interface Props<TCard extends CardType> {
   disableColumnDrag: boolean
   disableCardDrag: boolean
   onCardNew: (column: ColumnType<TCard>, card: TCard) => void | Promise<void>
-  allowAddCard: boolean | { on: 'top' | 'bottom' }
+  allowAddCard: boolean
 }
 
 export * from './components'
