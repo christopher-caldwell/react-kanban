@@ -33,7 +33,7 @@ export interface SharedProps<TCard extends Card> {
   /** @default false */
   disableColumnDrag?: boolean
   /** @default true */
-  allowAddCard?: boolean | { on: 'top' | 'bottom' }
+  allowAddCard?: boolean
   /** @default true */
   allowRemoveCard?: boolean
   /** @default true */
