@@ -3,8 +3,8 @@ export interface KanbanBoard<TCard extends Card> {
 }
 export interface Card {
   id: string | number
-  title: string
-  description: string
+  title?: string
+  description?: string
   content?: JSX.Element
 }
 export interface Column<TCard extends Card> {

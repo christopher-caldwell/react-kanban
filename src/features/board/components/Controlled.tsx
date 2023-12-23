@@ -20,6 +20,7 @@ export const ControlledBoard = function <TCard extends Card>({
   allowRemoveColumn = true,
   allowRenameColumn = true,
   allowRemoveCard = true,
+  allowAddCard = true,
   disableCardDrag = false,
   disableColumnDrag = false,
 }: ControlledBoardProps<TCard>) {
@@ -80,7 +81,7 @@ export const ControlledBoard = function <TCard extends Card>({
       onCardNew={() => {
         //
       }}
-      allowAddCard
+      allowAddCard={allowAddCard}
       board={board}
     />
   )
