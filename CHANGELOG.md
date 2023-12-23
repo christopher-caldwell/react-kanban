@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/christopher-caldwell/react-kanban/compare/v0.0.10...v0.0.11) (2023-12-23)
+
+
+### Bug Fixes
+
+* Allowing card add to be disabled ([#25](https://github.com/christopher-caldwell/react-kanban/issues/25)) ([a22a7a1](https://github.com/christopher-caldwell/react-kanban/commit/a22a7a1ad8bb8d2b6ea3f72935bbb8becdec1f35))
+
 ### [0.0.10](https://github.com/christopher-caldwell/react-kanban/compare/v0.0.9...v0.0.10) (2023-11-30)
 
 ### [0.0.9](https://github.com/christopher-caldwell/react-kanban/compare/v0.0.7...v0.0.9) (2023-11-30)
