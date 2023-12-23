@@ -81,7 +81,7 @@ interface Props<TCard extends CardType> {
   disableColumnDrag: boolean
   disableCardDrag: boolean
   onCardNew: (column: ColumnType<TCard>, card: TCard) => void | Promise<void>
-  allowAddCard: boolean | { on: 'top' | 'bottom' }
+  allowAddCard: boolean
 }
 
 export * from './components'

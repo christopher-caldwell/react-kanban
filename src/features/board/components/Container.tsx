@@ -74,7 +74,7 @@ export const BoardContainer = function <TCard extends Card>({
               disableColumnDrag={!!disableColumnDrag}
               disableCardDrag={!!disableCardDrag}
               onCardNew={onCardNew}
-              allowAddCard={!!allowAddCard}
+              allowAddCard={allowAddCard}
             >
               {column}
             </Column>
