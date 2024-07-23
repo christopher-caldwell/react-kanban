@@ -5,7 +5,7 @@ const config: Config = {
   collectCoverage: true,
   collectCoverageFrom: ['src/**'],
   coverageDirectory: 'coverage',
-  testMatch: ['<rootDir>/**/*.spec.{ts.tsx}'],
+  testMatch: ['<rootDir>/**/*.spec.{ts,tsx}'],
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   testRunner: 'jest-circus/runner',
   moduleNameMapper: {
