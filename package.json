@@ -21,9 +21,9 @@
   "repository": "https://github.com/christopher-caldwell/react-kanban",
   "license": "MIT",
   "peerDependencies": {
+    "@hello-pangea/dnd": ">=16",
     "react": ">=16",
-    "react-dom": ">=16",
-    "@hello-pangea/dnd": ">=16"
+    "react-dom": ">=16"
   },
   "homepage": "https://christopher-caldwell.github.io/react-kanban",
   "devDependencies": {
@@ -46,12 +46,12 @@
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-cypress": "2.11.2",
     "eslint-plugin-flowtype": "^8.0.3",
-    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-jest": "23.13.2",
     "eslint-plugin-jest-dom": "2.1.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "7.20.6",
+    "eslint-plugin-react": "^7.36.1",
     "eslint-plugin-react-hooks": "^4.0.8",
     "eslint-plugin-testing-library": "3.2.0",
     "gh-pages": "^4.0.0",
