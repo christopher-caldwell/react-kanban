@@ -199,6 +199,20 @@ You can either style all the board or import our style and override it with the 
 | `react-kanban-column-header__button`        |
 | `react-kanban-column-adder-button`          |
 
+## Usage with Remix
+
+Shout out to [@vjanssens](https://github.com/vjanssens) for discovering there are some extra steps for compatibility with Remix. 
+
+Add the following to your Vite config:
+```ts
+export default defineConfig({
+  // the rest of your config
+  ssr: {
+    noExternal: ["@caldwell619/react-kanban"]
+  },
+});
+```
+
 ## Contributing
 
 PRs are welcome.
