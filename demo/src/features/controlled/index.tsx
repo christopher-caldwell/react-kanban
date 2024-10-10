@@ -26,6 +26,11 @@ export const ControlledBoardDemo: FC = () => {
         onCardRemove={({ board, card, column }) => {
           console.log({ board, card, column })
         }}
+        allowRenameColumn
+        onColumnRename={({ board, column }) => {
+          setBoard(board)
+          window.alert(`Column renamed to ${column.title}`)
+        }}
       >
         {controlledBoard}
       </ControlledBoard>
