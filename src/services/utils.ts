@@ -27,8 +27,8 @@ const identity = <TValue>(value: TValue): TValue => {
   return value
 }
 
-export const when = <TValue>(value: TValue, predicate = identity) => {
-  return (callback: (...args: any) => void) => {
+export const when = <TValue>(value: TValue, predicate: (value: TValue) => boolean = identity as any) => {
+  return (callback: (value: TValue) => void) => {
     if (predicate(value)) return callback(value)
   }
 }
