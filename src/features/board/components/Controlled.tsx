@@ -4,6 +4,7 @@ import { Card, Column, KanbanBoard } from '@/types'
 import { DefaultColumn } from '@/features/column'
 import { BoardContainer, OnDragEnd } from './Container'
 import { SharedProps } from './shared'
+import { changeColumn } from '@/services'
 
 export const ControlledBoard = function <TCard extends Card>({
   children: board,
@@ -34,6 +35,10 @@ export const ControlledBoard = function <TCard extends Card>({
       onColumnDragEnd(subject, source, destination)
     }
   }
+  const handleColumnRename = (column: Column<TCard>, title: string) => {
+    const boardWithRenamedColumn = changeColumn<TCard>(board, column, { title })
+    onColumnRename?.({ board: boardWithRenamedColumn, column: { ...column, title } })
+  }
 
   return (
     <BoardContainer
@@ -53,7 +58,7 @@ export const ControlledBoard = function <TCard extends Card>({
                 allowRemoveColumn={allowRemoveColumn}
                 onColumnRemove={(updatedColumn) => onColumnRemove?.({ board, column: updatedColumn })}
                 allowRenameColumn={allowRenameColumn}
-                onColumnRename={(renamedColumn) => onColumnRename?.({ board, column: renamedColumn })}
+                onColumnRename={handleColumnRename}
               >
                 {column}
               </DefaultColumn>

@@ -116,7 +116,7 @@ export const UncontrolledBoard = function <TCard extends Card>({
               allowRemoveColumn={allowRemoveColumn}
               onColumnRemove={(updatedColumn) => onColumnRemove?.({ board, column: updatedColumn })}
               allowRenameColumn={allowRenameColumn}
-              onColumnRename={(renamedColumn) => onColumnRename?.({ board, column: renamedColumn })}
+              onColumnRename={handleColumnRename}
             >
               {column}
             </DefaultColumn>

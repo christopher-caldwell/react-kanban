@@ -13,8 +13,8 @@ export const UncontrolledBoardDemo: FC = () => {
       />
       <UncontrolledBoard
         initialBoard={board}
-        onCardRemove={({ board, card, column }) => {
-          console.log({ board, card, column })
+        onColumnRename={({ column }) => {
+          window.alert(`Column renamed to ${column.title}`)
         }}
         onCardDragEnd={(subjectCustomCard, source, destination) => {
           console.log({
