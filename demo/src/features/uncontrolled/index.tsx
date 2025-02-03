@@ -16,6 +16,13 @@ export const UncontrolledBoardDemo: FC = () => {
         onCardRemove={({ board, card, column }) => {
           console.log({ board, card, column })
         }}
+        onCardDragEnd={(subjectCustomCard, source, destination) => {
+          console.log({
+            subjectCustomCard,
+            source,
+            destination
+          })
+        }}
       />
     </>
   )
