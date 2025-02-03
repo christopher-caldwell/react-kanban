@@ -36,7 +36,7 @@ export const UncontrolledBoard = function <TCard extends Card>({
   // @ts-expect-error TS(7031) FIXME: Binding element 'source' implicitly has an 'any' t... Remove this comment to see the full error message
   const handleOnDragEnd = ({ source, destination, subject }, { moveCallback, notifyCallback }) => {
     const reorderedBoard = moveCallback(board, source, destination)
-    when(notifyCallback)((callback) => callback(reorderedBoard, subject, source, destination))
+    when(notifyCallback)((callback) => callback(subject, source, destination))
     setBoard(reorderedBoard)
   }
 

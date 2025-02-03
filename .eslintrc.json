@@ -2,6 +2,7 @@
   "parser": "@typescript-eslint/parser",
   "extends": ["react-app", "plugin:@typescript-eslint/recommended"],
   "plugins": ["prettier"],
+  "ignorePatterns": ["dist/*"],
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
     "prettier/prettier": "error"
