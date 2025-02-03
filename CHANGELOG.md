@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/christopher-caldwell/react-kanban/compare/v0.0.11...v0.0.12) (2025-02-03)
+
+
+### Bug Fixes
+
+* Removing lock files from gitignore ([b676a39](https://github.com/christopher-caldwell/react-kanban/commit/b676a396602103bdd0a066bf5a20d2255b6acc77))
+* Type signature incorrect ([#48](https://github.com/christopher-caldwell/react-kanban/issues/48)) ([5389482](https://github.com/christopher-caldwell/react-kanban/commit/53894829aea5a0ed114e16da9c33fc4b26ff1a50))
+
 ### [0.0.11](https://github.com/christopher-caldwell/react-kanban/compare/v0.0.10...v0.0.11) (2023-12-23)
 
 
