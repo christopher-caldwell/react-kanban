@@ -27,7 +27,7 @@ interface Props {
   children: CardType
   index: number
   renderCard: RenderCard
-  disableCardDrag: boolean
+  disableCardDrag?: boolean
 }
 
 export * from './components'

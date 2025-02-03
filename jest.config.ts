@@ -1,13 +1,18 @@
 import { Config } from 'jest'
 
 const config: Config = {
-  preset: 'ts-jest',
+  globals: {
+    'ts-jest': {
+      isolatedModules: true,
+      tsconfig: 'tsconfig.json',
+    },
+  },
   collectCoverage: true,
   collectCoverageFrom: ['src/**'],
   coverageDirectory: 'coverage',
-  testMatch: ['<rootDir>/**/*.spec.{ts.tsx}'],
+  testEnvironment: 'jsdom',
+  testMatch: ['<rootDir>/**/*.spec.{ts,tsx}'],
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
-  testRunner: 'jest-circus/runner',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@services/(.*)$': '<rootDir>/src/services/$1',

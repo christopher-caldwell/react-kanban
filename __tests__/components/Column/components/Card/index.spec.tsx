@@ -1,62 +1,57 @@
-import { render } from '@testing-library/react'
-// @ts-expect-error TS(2305): Module '"react-beautiful-dnd"' has no exported mem... Remove this comment to see the full error message
-import { callbacks } from 'react-beautiful-dnd'
-import Card from '@/components/Board/components/DefaultCard'
+import { Card } from '@/features/card'
+import { DragDropContext, Droppable } from '@hello-pangea/dnd'
+import { fireEvent, render, screen } from '@testing-library/react'
 
-// @ts-expect-error TS(2593): Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
+const SPACE = { keyCode: 32 }
+const ARROW_DOWN = { keyCode: 40 }
+
 describe('<Card />', () => {
-  let subject
-
   const card = {
     id: 1,
     title: 'Card title',
     description: 'Card content',
   }
 
-  // @ts-expect-error TS(2304): Cannot find name 'jest'.
-  const defaultCard = jest.fn(() => <div>Card title</div>)
-
-  function mount({ children = card, ...otherProps } = {}) {
-    subject = render(
-      <Card renderCard={defaultCard} {...otherProps}>
-        {children}
-      </Card>
+  const renderCard = (isDragging: boolean) => {
+    return <p>{isDragging ? 'Dragging' : card.title}</p>
+  }
+  function mount() {
+    render(
+      <DragDropContext onDragEnd={jest.fn}>
+        <Droppable droppableId='1'>
+          {(provided) => (
+            <div ref={provided.innerRef} {...provided.droppableProps}>
+              <Card index={0} renderCard={renderCard}>
+                {card}
+              </Card>
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
     )
-    return subject
   }
 
-  function reset() {
-    subject = undefined
-    defaultCard.mockClear()
-  }
-
-  // @ts-expect-error TS(2304): Cannot find name 'beforeEach'.
-  beforeEach(reset)
-
-  // @ts-expect-error TS(2593): Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
   it('renders the specified card', () => {
-    // @ts-expect-error TS(2304): Cannot find name 'expect'.
-    expect(mount().queryByText('Card title')).toBeInTheDocument()
+    mount()
+    expect(screen.queryByText('Card title')).toBeInTheDocument()
   })
 
-  // @ts-expect-error TS(2593): Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
   describe('when the card is being dragging', () => {
-    // @ts-expect-error TS(2304): Cannot find name 'beforeEach'.
-    beforeEach(() => {
-      callbacks.isDragging(true)
+    it('calls the "renderCard" prop passing the dragging value', async () => {
       mount()
-    })
-    // @ts-expect-error TS(2304): Cannot find name 'afterEach'.
-    afterEach(() => {
-      callbacks.isDragging(false)
-    })
+      const card = screen.getByTestId('card-1')
 
-    // @ts-expect-error TS(2593): Cannot find name 'it'. Do you need to install type... Remove this comment to see the full error message
-    it('calls the "renderCard" prop passing the dragging value', () => {
-      // @ts-expect-error TS(2304): Cannot find name 'expect'.
-      expect(defaultCard).toHaveBeenCalledTimes(1)
-      // @ts-expect-error TS(2304): Cannot find name 'expect'.
-      expect(defaultCard).toHaveBeenCalledWith(true)
+      expect(screen.queryByText('Dragging')).not.toBeInTheDocument()
+
+      fireEvent.keyDown(card, SPACE) // Begins the dnd
+      fireEvent.keyDown(card, ARROW_DOWN) // Moves the element
+
+      expect(screen.queryByText('Dragging')).toBeInTheDocument()
+
+      fireEvent.keyDown(card, SPACE) // Ends the dnd
+
+      expect(screen.queryByText('Dragging')).not.toBeInTheDocument()
     })
   })
 })
